@@ -13,7 +13,7 @@ CryptoTime puts a end to client side time spoofing attacks. Time is checked from
 
 - No longer trust client side time
 - Trust the time is correct and hasn't been tampered with
-- Ensure reply attacks can not occur
+- Ensure replay attacks can not occur
 - Works just like the time package.
 
 ```go
