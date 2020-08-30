@@ -16,10 +16,11 @@ Its really simple, just a drop in replacement.
 
 ## REST API
 
-Rest API supports both JSON and protobufers. To use protobufers just append `?protobuf=1`.
+Rest API supports both JSON and protobufers. To use protobufers just append `?protobuf=1`. https://api.syrinsecurity.net
 
 ```
 GET /v1/common/cryptotime/:challenge
+Host: api.syrinsecurity.net
 ```
 
 ```json
