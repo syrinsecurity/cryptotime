@@ -1,0 +1,42 @@
+# Crypto Time
+
+CryptoTime puts a end to client side time spoofing attacks. Time is checked from our servers which is signed using our PGP key. This ensures the traffic has not been tampered with. To prevent reply attacks we also implement a 40 character nonce/challenge which the client sends with each request. This will prevent a attack for just sending the response form a previous reply.
+
+- No longer trust client side time
+- Trust the time is correct and hasn't been tampered with
+- Ensure reply attacks can not occur
+- Works just like the time package.
+
+```go
+cryptotime.Now()
+```
+
+Cryptotime.Now() will return everything you would expect time.Now(), a time.Time.
+Its really simple, just a drop in replacement.
+
+## REST API
+
+Rest API supports both JSON and protobufers. To use protobufers just append `?protobuf=1`.
+
+```
+GET /v1/common/cryptotime/:challenge
+```
+
+```json
+{
+        "unix": 1598819088,
+        "unixNano": 1598819088784807000,
+        "nano": 784806859,
+        "UnixDate": "Sun Aug 30 21:24:48 BST 2020",
+        "RFC850": "Sunday, 30-Aug-20 21:24:48 BST",
+        "RFC1123": "Sun, 30 Aug 2020 21:24:48 BST",
+        "stamp": "Aug 30 21:24:48",
+        "stampMillisecond": "Aug 30 21:24:48.784",
+        "stampMicrosecond": "Aug 30 21:24:48.784806",
+        "stampNanoSecond": "Aug 30 21:24:48.784806859",
+        "challenge": "asdgadfhnw5ysdrhgssgnsfgnhdfgndfgnfgnsfg",
+        "hash": "86AA971ED2DB1A44BEF92BBA580CF93B1BB3DCC3CEF8ED5EBF4A77F67A09FB51",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nws8dA5xo-----END PGP SIGNATURE-----",
+        "success": true
+}
+```

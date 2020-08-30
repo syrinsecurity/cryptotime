@@ -1,0 +1,58 @@
+package cryptotime
+
+import (
+	"github.com/jchavannes/go-pgp/pgp"
+)
+
+//Key is the PGP key used to sign the responses
+const Key = `-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+LnCu/g==
+=lcj+
+-----END PGP PUBLIC KEY BLOCK-----
+`
+
+func verify(message []byte, signature []byte) bool {
+	publicKey, _ := pgp.GetEntity([]byte(Key), []byte{})
+	err := pgp.Verify(publicKey, message, signature)
+	if err == nil {
+		return true
+	}
+	return false
+}
